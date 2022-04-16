@@ -12,6 +12,7 @@ const schema = mongoose.Schema(
             lowercas: true,
         },
         password: String,
+        name: String,
         introduce: String,
         avatar:
         {
@@ -22,7 +23,7 @@ const schema = mongoose.Schema(
             {
               type: mongoose.Schema.Types.ObjectId,
               ref: "Role"
-            }
+            },
         ],
     },
 

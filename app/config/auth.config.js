@@ -1,3 +1,3 @@
 module.exports = {
-    secret: "vntalking-secret-key"
+    secret: require('crypto').randomBytes(64).toString('hex')
   };

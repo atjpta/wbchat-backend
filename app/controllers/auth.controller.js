@@ -10,6 +10,7 @@ exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
+    name: req.body.name,
     password: bcrypt.hashSync(req.body.password, 8),
   });
   user.save((err, user) => {
@@ -70,7 +71,7 @@ exports.signin = (req, res) => {
       }
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
-        user.password
+        user.password,
       );
       if (!passwordIsValid) {
         return res.status(401).send({
@@ -85,13 +86,12 @@ exports.signin = (req, res) => {
       for (let i = 0; i < user.roles.length; i++) {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
+      console.log("đăng nhập thành công");
       res.status(200).send({
         id: user._id,
-        username: user.username,
-        email: user.email,
+        name: user.name,
         roles: authorities,
         accessToken: token,
-        
       });
     });
 };

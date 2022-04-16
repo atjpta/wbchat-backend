@@ -20,10 +20,10 @@ module.exports = (app) => {
     router_user.route("/test/user")
         .get([authJwt.verifyToken], users.userBoard);     
 
-    router_user.route("/test/admin")
+    router_user.route("/test/mod")
         .get([authJwt.verifyToken, authJwt.isModerator],users.moderatorBoard); 
 
-    router_user.route("/test/mod")
+    router_user.route("/test/admin")
         .get([authJwt.verifyToken, authJwt.isAdmin], users.adminBoard); 
 
     app.use("/api/users", router_user); 
